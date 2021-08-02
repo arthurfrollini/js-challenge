@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício</title>
+  </head>
+  <body>
+    <h1>Vamos verificar se é palíndromo</h1>
+    Digite uma palavra ou frase: <input type="text" /> <br /><br />
+    <button type="button">Enviar</button>
+
+    <script>
+      const enviar = document.querySelector('button');
+      const input = document.querySelector('input');
+
+      /*Rotina criada para limpar caracteres e espaços*/
+      function editString(str) {
+        return str
+          .toLowerCase()
+          .replace(/[áàãâä]/iu, 'a')
+          .replace(/[éèêë]/iu, 'e')
+          .replace(/[íìîï]/iu, 'i')
+          .replace(/[óòõôö]/iu, 'o')
+          .replace(/[úùûü]/iu, 'u')
+          .replace(/[ç]/iu, 'c')
+          .replace(/[^a-zA-Z]/gi, '');
+      }
+
+      function handleClick() {
+        /*Pegando o valor do input*/
+        const valorInput = input.value;
+
+        /*Editando o Input do usuário*/
+        const inputEditado = editString(valorInput);
+
+        /*Transformando a palavra/frase digitada
+        em um array para usar o método reverse()*/
+        const arrayInput = inputEditado.split('');
+
+        /*Invertendo as letras do array e rearranjando-as
+        novamente em uma string*/
+        const valorInputInvertido = arrayInput.reverse().join('');
+
+        /*Testando e retornando o resultado*/
+        if (inputEditado === valorInputInvertido) {
+          alert('A palavra/frase digita é um palíndromo');
+          input.value = '';
+        } else {
+          alert('A palavra/frase digita não é um palíndromo');
+          input.value = '';
+        }
+      }
+
+      enviar.addEventListener('click', handleClick);
+    </script>
+  </body>
+</html>
